@@ -66,3 +66,43 @@ This endpoint is used to register a new user.
     ]
   }
   ```
+
+
+### POST /user/add-user
+
+This endpoint is used to register a new user.
+
+#### Request
+
+- **URL**: `/user/add-user`
+- **Method**: `POST`
+- **Headers**: 
+  - `Content-Type: application/json`
+- **Body**:
+  ```json
+  {
+    "fullName": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "yourpassword"
+  }
+
+#### Response
+
+- **Body**:
+```json
+{
+  "token": "jwt_token",
+  "user": {
+    "_id": "user_id",
+    "fullName": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "hashed_password"
+  }
+}
+``
