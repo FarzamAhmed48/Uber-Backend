@@ -105,4 +105,63 @@ This endpoint is used to register a new user.
     "password": "hashed_password"
   }
 }
-``
+```
+
+### GET /user/profile
+
+This endpoint is used to retrieve the current user's profile.
+
+#### Request
+
+- **URL**: `/user/profile`
+- **Method**: `GET`
+- **Headers**: 
+  - `Authorization: Bearer <jwt_token>`
+
+
+#### Response
+
+- **Body**:
+```json
+{
+  "_id": "user_id",
+  "fullName": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "email": "john.doe@example.com"
+}
+```
+### Error Response
+```json
+{
+  "error": "Unauthorized"
+}
+```
+
+
+### GET /user/logout
+
+This endpoint is used to logout.
+
+#### Request
+
+- **URL**: `/user/logout`
+- **Method**: `GET`
+- **Headers**: 
+  - `Authorization: Bearer <jwt_token>`
+
+#### Response
+
+- **Body**:
+```json
+{
+  "message": "Logged Out Successfully"
+}
+```
+### Error Response
+```json
+{
+  "error": "Unauthorized"
+}
+```
