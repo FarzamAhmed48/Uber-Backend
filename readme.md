@@ -247,3 +247,95 @@ This endpoint is used to register a new Captain.
     ]
   }
   ```
+### POST /captain/login
+
+This endpoint is used to log in an existing captain.
+
+#### Request
+
+- **URL**: `/captain/login`
+- **Method**: `POST`
+- **Headers**: 
+  - `Content-Type: application/json`
+- **Body**:
+  ```json
+  {
+    "email": "john.doe@example.com",
+    "password": "yourpassword"
+  }
+
+  ```
+#### Response
+ ```json
+{
+  "token": "jwt_token",
+  "captain": {
+    "_id": "captain_id",
+    "fullName": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "john.doe@example.com"
+  }
+}
+```
+#### Error Response
+  ```json
+  {
+  "error": [
+    {
+      "msg": "Invalid Message",
+      "param": "email",
+      "location": "body"
+    },
+    {
+      "msg": "Password Should atleast contain 6 letters",
+      "param": "password",
+      "location": "body"
+    }
+  ]
+}
+```
+```json
+{
+  "error": "Invalid Email or Password"
+}
+```
+
+
+
+
+### POST /captain/login
+
+This endpoint is used to log in an existing captain.
+
+#### Response
+
+```json
+{
+  "_id": "captain_id",
+  "fullName": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "email": "john.doe@example.com",
+  "vehicle": {
+    "color": "red",
+    "numberPlateNo": "BHX-291",
+    "capacity": 3,
+    "vehicleType": "car"
+  },
+  "status": "active",
+  "location": {
+    "lat": 12.9716,
+    "lng": 77.5946
+  }
+}
+```
+
+#### Error Response
+```json
+{
+  "error": "Unauthorized"
+}
+```
