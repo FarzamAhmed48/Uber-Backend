@@ -10,7 +10,7 @@ This endpoint is used to register a new user.
 
 - **URL**: `/user/add-user`
 - **Method**: `POST`
-- **Headers**: 
+- **Headers**:
   - `Content-Type: application/json`
 - **Body**:
   ```json
@@ -67,7 +67,6 @@ This endpoint is used to register a new user.
   }
   ```
 
-
 ### POST /user/add-user
 
 This endpoint is used to register a new user.
@@ -76,7 +75,7 @@ This endpoint is used to register a new user.
 
 - **URL**: `/user/add-user`
 - **Method**: `POST`
-- **Headers**: 
+- **Headers**:
   - `Content-Type: application/json`
 - **Body**:
   ```json
@@ -88,10 +87,12 @@ This endpoint is used to register a new user.
     "email": "john.doe@example.com",
     "password": "yourpassword"
   }
+  ```
 
 #### Response
 
 - **Body**:
+
 ```json
 {
   "token": "jwt_token",
@@ -115,13 +116,13 @@ This endpoint is used to retrieve the current user's profile.
 
 - **URL**: `/user/profile`
 - **Method**: `GET`
-- **Headers**: 
+- **Headers**:
   - `Authorization: Bearer <jwt_token>`
-
 
 #### Response
 
 - **Body**:
+
 ```json
 {
   "_id": "user_id",
@@ -132,13 +133,14 @@ This endpoint is used to retrieve the current user's profile.
   "email": "john.doe@example.com"
 }
 ```
+
 ### Error Response
+
 ```json
 {
   "error": "Unauthorized"
 }
 ```
-
 
 ### GET /user/logout
 
@@ -148,20 +150,100 @@ This endpoint is used to logout.
 
 - **URL**: `/user/logout`
 - **Method**: `GET`
-- **Headers**: 
+- **Headers**:
   - `Authorization: Bearer <jwt_token>`
 
 #### Response
 
 - **Body**:
+
 ```json
 {
   "message": "Logged Out Successfully"
 }
 ```
+
 ### Error Response
+
 ```json
 {
   "error": "Unauthorized"
 }
 ```
+
+### POST /user/add-captain
+
+This endpoint is used to register a new Captain.
+
+#### Request
+
+- **URL**: `/user/add-captain`
+- **Method**: `POST`
+- **Headers**:
+  - `Content-Type: application/json`
+- **Body**:
+  ```json
+  {
+    "fullName": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "password": "yourpassword",
+    "vehicle":{
+      "color":"red",
+      "vehicleType":"car",
+      "capacity":3,
+      "numberPlateNo":"BHX-291"
+    }
+  }
+  ```
+
+#### Response
+
+- **Body**:
+  ```json
+  {
+    "token": "jwt_token",
+    "cpatain": {
+      "_id": "captain_id",
+      "fullName": {
+        "firstName": "John",
+        "lastName": "Doe"
+      },
+      "email": "john.doe@example.com",
+      "password": "hashed_password"
+    },
+    "vehicle":{
+      "color":"red",
+      "vehicleType":"car",
+      "capacity":3,
+      "numberPlateNo":"BHX-291"
+    }
+  }
+  ```
+
+#### Error Response
+
+- **Body**:
+  ```json
+  {
+    "error": [
+      {
+        "msg": "Invalid Message",
+        "param": "email",
+        "location": "body"
+      },
+      {
+        "msg": "First Name Should atleast contain 3 letters",
+        "param": "fullName.firstName",
+        "location": "body"
+      },
+      {
+        "msg": "Password Should atleast contain",
+        "param": "password",
+        "location": "body"
+      }
+    ]
+  }
+  ```
